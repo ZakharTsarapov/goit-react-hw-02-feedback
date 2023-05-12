@@ -1,0 +1,13 @@
+.list {
+    display: flex;
+    list-style: none;
+}
+
+.button {
+    background-color: tomato;
+    border: none;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
