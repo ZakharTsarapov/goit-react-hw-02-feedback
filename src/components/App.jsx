@@ -4,14 +4,12 @@ import { Feedback } from './Feedback/Feedback';
 import { Statistics } from './Statistics/Statistics';
 import { Section } from './Section/Section';
 
-
 export class App extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
-
 
   handleLeaveFeedback = option => {
     this.setState(prevState => ({
@@ -34,16 +32,29 @@ export class App extends Component {
     const options = Object.keys(this.state);
     const { good, bad, neutral } = this.state;
 
-    return(
+    return (
       <div>
-      <Section title='Please leave feedback'><Feedback options={options}  handleLeaveFeedback={this.handleLeaveFeedback} /></Section>
-      
-      <Section title='Statistics'>{
-        this.countTotalFeedback() ? (
-          <Statistics good={good} bad={bad} neutral={neutral} total={this.countTotalFeedback} positivePercentage={this.countPositiveFeedbackPercentage}/>
-        ) : ( <Notification message="There is no feedback" /> )
-      }</Section>
+        <Section title="Please leave feedback">
+          <Feedback
+            options={options}
+            handleLeaveFeedback={this.handleLeaveFeedback}
+          />
+        </Section>
+
+        <Section title="Statistics">
+          {this.countTotalFeedback() ? (
+            <Statistics
+              good={good}
+              bad={bad}
+              neutral={neutral}
+              total={this.countTotalFeedback}
+              positivePercentage={this.countPositiveFeedbackPercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
       </div>
-    )
+    );
   }
 }
